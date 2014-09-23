@@ -172,7 +172,8 @@ typedef enum {
 #define XX(code, _) UV_ ## code = UV__ ## code,
   UV_ERRNO_MAP(XX)
 #undef XX
-  UV_ERRNO_MAX = UV__EOF - 1
+  UV_ERRNO_MAX = UV__EOF - 1,
+  UV_SAGHUL = 0
 } uv_errno_t;
 
 typedef enum {
