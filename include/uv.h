@@ -1147,8 +1147,7 @@ struct uv_fs_s {
   uv_fs_cb cb;
   ssize_t result;
   void* ptr;
-  const char* path;
-  uv_stat_t statbuf;  /* Stores the result of uv_fs_stat() and uv_fs_fstat(). */
+  struct uv__work work_req;
   UV_FS_PRIVATE_FIELDS
 };
 

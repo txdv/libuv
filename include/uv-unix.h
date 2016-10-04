@@ -282,19 +282,24 @@ typedef struct {
   int status;                                                                 \
 
 #define UV_FS_PRIVATE_FIELDS                                                  \
-  const char *new_path;                                                       \
+  const char* path;                                                           \
   uv_file file;                                                               \
-  int flags;                                                                  \
-  mode_t mode;                                                                \
-  unsigned int nbufs;                                                         \
-  uv_buf_t* bufs;                                                             \
-  off_t off;                                                                  \
-  uv_uid_t uid;                                                               \
-  uv_gid_t gid;                                                               \
-  double atime;                                                               \
-  double mtime;                                                               \
-  struct uv__work work_req;                                                   \
-  uv_buf_t bufsml[4];                                                         \
+  union {                                                                     \
+    struct {                                                                  \
+      const char *new_path;                                                   \
+      int flags;                                                              \
+      mode_t mode;                                                            \
+      unsigned int nbufs;                                                     \
+      uv_buf_t* bufs;                                                         \
+      off_t off;                                                              \
+      uv_uid_t uid;                                                           \
+      uv_gid_t gid;                                                           \
+      double atime;                                                           \
+      double mtime;                                                           \
+      uv_buf_t bufsml[4];                                                     \
+    };                                                                        \
+    uv_stat_t statbuf;                                                        \
+  };                                                                          \
 
 #define UV_TTY_PRIVATE_FIELDS                                                 \
   struct termios orig_termios;                                                \
